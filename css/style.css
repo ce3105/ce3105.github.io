@@ -9635,6 +9635,10 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+#barcode {
+  width : 100%;
+}
+
 #videoModal .modal-dialog {
   position: relative;
   max-width: 800px;
