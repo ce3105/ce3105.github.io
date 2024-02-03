@@ -2,13 +2,13 @@
     "use strict";
 
     // Navbar on scrolling
-    $(window).scroll(function () {
+    /*$(window).scroll(function () {
         if ($(this).scrollTop() > 200) {
             $('.navbar').fadeIn('slow').css('display', 'flex');
         } else {
             $('.navbar').fadeOut('slow').css('display', 'none');
         }
-    });
+    });*/
 
 
     // Smooth scrolling on the navbar links
@@ -29,7 +29,7 @@
 
 
     // Modal Video
-    $(document).ready(function () {
+    /*$(document).ready(function () {
         var $videoSrc;
         $('.btn-play').click(function () {
             $videoSrc = $(this).data("src");
@@ -43,7 +43,7 @@
         $('#videoModal').on('hide.bs.modal', function (e) {
             $("#video").attr('src', $videoSrc);
         })
-    });
+    });*/
 
 
     // Scroll to Bottom
@@ -53,6 +53,10 @@
         } else {
             $('.scroll-to-bottom').fadeIn('slow');
         }
+    });
+    $('.scroll-to-bottom').click(function () {
+        $('html, body').animate({scrollTop: $($('.navbar-nav a:nth-child(2)').attr('href')).offset().top - 45}, 1500, 'easeInOutExpo');
+        return false;
     });
     
     

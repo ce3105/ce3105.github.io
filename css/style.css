@@ -8,6 +8,7 @@
 :root {
   --color-primary: #4b1f30;
   --color-secondary: #f7c702;
+  --bg-secondary: #ffebf3;
   /*
   --blue: #007bff;
   --indigo: #6610f2;
@@ -5929,6 +5930,7 @@ a.close.disabled {
   text-align: center;
   opacity: 0.5;
   transition: opacity 0.15s ease;
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -6108,7 +6110,7 @@ button.bg-primary:focus {
 }
 
 .bg-secondary {
-  background-color: #EDF5F7 !important;
+  background-color: var(--bg-secondary);
 }
 
 a.bg-secondary:hover, a.bg-secondary:focus,
@@ -6438,6 +6440,10 @@ button.bg-dark:focus {
 }
 
 @media (min-width: 1200px) {
+  .carousel-control-prev,
+  .carousel-control-next {
+    display: block;
+  }
   .d-xl-none {
     display: none !important;
   }
@@ -9510,11 +9516,11 @@ a.text-dark:hover, a.text-dark:focus {
     transform: translateY(-15px);
   }
 }
-
+/*
 .navbar-dark {
   display: none;
 }
-
+*/
 .navbar-dark .navbar-nav .nav-link {
   padding: 25px 10px;
   color: #FFFFFF;
