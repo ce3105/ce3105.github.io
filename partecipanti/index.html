@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Carlos & Ester</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar Start -->
+    <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
+        <a href="index.html" class="navbar-brand d-block d-lg-none">
+            <h1 class="font-secondary text-white mb-n2">Carlos <span class="text-primary">&</span> Ester</h1>
+        </a>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto py-0"></div>
+            <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
+                <h1 class="font-secondary text-white mb-n2">Carlos <span class="text-primary">&</span> Ester</h1>
+            </a>
+            <div class="navbar-nav mr-auto py-0"></div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- About Start -->
+    <div class="container-fluid py-5" id="about">
+        <div class="container py-5">
+            <div class="section-title position-relative text-center">
+                <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">Register</h6>
+                <h1 class="font-secondary display-4">Partecipanti</h1>
+                <i class="far fa-heart text-dark"></i>
+            </div>
+            <div class="table-responsive">
+                <table class="table"> <!--table-sm-->
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Cognome</th>
+                        <th scope="col">Ospiti</th>
+                        <th scope="col">Evento</th>
+                        <th scope="col">Messaggio</th>
+                      </tr>
+                    </thead>
+                    <tbody id="table-register"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Thanks Start -->
+    <div class="container-fluid bg-dark text-white py-5" id="thanks" style="margin-top: 90px;">
+        <div class="container text-center py-5"></div>
+    </div>
+    <!-- Thanks End -->
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    
+    <script type="text/javascript">
+        async function tableRegister(){
+            const params = { 
+                method: 'GET',
+                headers: {
+                    "Accept": "*/*",
+                    "Content-Type": "application/json"
+                }
+            }
+
+            const response = await fetch(`https://ce310524-default-rtdb.europe-west1.firebasedatabase.app/partecipanti.json`, params);
+
+            const data = await response.text();
+
+            let records = '';
+
+            Object.keys(JSON.parse(data)).forEach((id, index) => {
+                const record = JSON.parse(data)[id];
+
+                records += `
+                    <tr>
+                        <th scope="row">${index+1}</th>
+                        <td>${record['nome']}</td>
+                        <td>${record['cognome']}</td>
+                        <td>${record['numero di ospiti']}</td>
+                        <td>${record['Partecipazione']}</td>
+                        <td>${record['Messaggio']}</td>
+                    </tr>
+                `
+            })
+
+            document.getElementById('table-register').innerHTML = records;
+        }
+        
+        tableRegister()
+    </script>
+</body>
+
+</html>
