@@ -441,7 +441,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="text-center">
-                        <form id="formRSVP" action="#rsvp" onsubmit="javascript:return false;rsvp(this, 'POST')">
+                        <form id="formRSVP" action="#rsvp" onsubmit="javascript:rsvp(this, 'POST');return false;">
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
                                     <input type="text" class="form-control bg-secondary border-0 py-4 px-3" placeholder="Nome" required="required"/>
@@ -576,8 +576,7 @@
             }
 
             const response = await fetch(`https://ce310524-default-rtdb.europe-west1.firebasedatabase.app/partecipanti${idPartecipante}.json`, params);
-
-            let data = await response.text();
+            const data = JSON.parse(await response.text());
 
             document.getElementById('well-done').removeAttribute('hidden');
 
@@ -585,21 +584,21 @@
                 scrollTop: $('#well-done').offset().top - 45
             }, 1500, 'easeInOutExpo');
 
-            JsBarcode("#barcode", idPartecipante || JSON.parse(data).name, {
+            JsBarcode("#barcode", idPartecipante || data.name, {
                 background: "transparent",
                 lineColor: getComputedStyle(document.documentElement).getPropertyValue('--color-primary'),
                 displayValue: true
             });
 
             if(method === 'GET') {
-                form[0].value = JSON.parse(data)['nome'];
-                form[1].value = JSON.parse(data)['cognome'];
-                form[2].value = JSON.parse(data)['numero di ospiti'];
-                form[3].value = JSON.parse(data)['Partecipazione'];
-                form[4].value = JSON.parse(data)['Messaggio'];
+                form[0].value = data['nome'];
+                form[1].value = data['cognome'];
+                form[2].value = data['numero di ospiti'];
+                form[3].value = data['Partecipazione'];
+                form[4].value = data['Messaggio'];
             }
 
-            if(idPartecipante === '') localStorage.setItem('idPartecipante', `/${JSON.parse(data).name}`)
+            if(idPartecipante === '') localStorage.setItem('idPartecipante', `/${data.name}`)
         }
 
         if(idPartecipante !== '') {
