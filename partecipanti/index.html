@@ -85,12 +85,12 @@
 
             const response = await fetch(`https://ce310524-default-rtdb.europe-west1.firebasedatabase.app/partecipanti.json`, params);
 
-            const data = await response.text();
+            const data = await response.json();
 
             let records = '';
 
-            Object.keys(JSON.parse(data)).forEach((id, index) => {
-                const record = JSON.parse(data)[id];
+            Object.keys(data).forEach((id, index) => {
+                const record = data[id];
 
                 records += `
                     <tr>

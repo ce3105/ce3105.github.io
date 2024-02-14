@@ -41,6 +41,8 @@
   */
 }
 
+*[data-lang]{display:none}
+
 *,
 *::before,
 *::after {
@@ -2670,7 +2672,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-primary:hover {
-  color: #fff;
+  color: var(--color-primary);
   background-color: var(--color-secondary);
   border-color: var(--color-secondary);
 }
@@ -2686,7 +2688,7 @@ fieldset:disabled a.btn {
 
 .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active,
 .show > .btn-outline-primary.dropdown-toggle {
-  color: #fff;
+  color: var(--color-primary);
   background-color: var(--color-secondary);
   border-color: var(--color-secondary);
 }
