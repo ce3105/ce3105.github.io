@@ -9677,38 +9677,56 @@ a.text-dark:hover, a.text-dark:focus {
   margin-bottom: 30px;
 }
 
+.timeline .row:nth-child(even) {
+  flex-direction: column-reverse;
+}
+
+.timeline::after {
+  position: absolute;
+  content: "";
+  width: 2px;
+  top: 0;
+  bottom: 0;
+  /*left: 50%;*/
+  margin-left: -1px;
+  background: var(--color-secondary);
+}
+.timeline .row::before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: calc(50% - 15px);
+  /*left: calc(50% - 15px);*/
+  background: #FFFFFF;
+  border: 2px solid var(--color-secondary);
+  transform: rotate(45deg);
+  z-index: 1;
+}
+.timeline .row::after {
+  content: "\f004";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  position: absolute;
+  top: calc(50% - 10px);
+  /*left: calc(50% - 8px);*/
+  left: 7px;
+  color: var(--color-secondary);
+  z-index: 2;
+}
+
 @media (min-width: 768px) {
+  .timeline .row:nth-child(even) {
+    flex-direction: initial;
+  }
   .timeline::after {
-    position: absolute;
-    content: "";
-    width: 2px;
-    top: 0;
-    bottom: 0;
     left: 50%;
-    margin-left: -1px;
-    background: var(--color-secondary);
   }
   .timeline .row::before {
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    top: calc(50% - 15px);
     left: calc(50% - 15px);
-    background: #FFFFFF;
-    border: 2px solid var(--color-secondary);
-    transform: rotate(45deg);
-    z-index: 1;
   }
   .timeline .row::after {
-    content: "\f004";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 400;
-    position: absolute;
-    top: calc(50% - 10px);
     left: calc(50% - 8px);
-    color: var(--color-secondary);
-    z-index: 2;
   }
 }
 
