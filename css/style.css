@@ -1549,6 +1549,13 @@ pre code {
   border-top: 2px solid #dee2e6;
 }
 
+.table thead {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  box-shadow: 0 0 0 3px #dee2e6;
+}
+
 .table thead th {
   vertical-align: bottom;
   border-bottom: 4px solid #dee2e6;
@@ -1873,6 +1880,7 @@ pre code {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  height: calc(100vh - 350px);
 }
 
 .table-responsive > .table-bordered {
