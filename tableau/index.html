@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Carlos & Ester</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <style>
+            @media (orientation: portrait) {
+                #video-tableau {
+                    display: none;
+                }
+                #rotate-device {
+                    display: inline-block;
+                }
+            }
+            
+            @media (orientation: landscape) {
+                #video-tableau {
+                    display: inline-block;
+                }
+                #rotate-device {
+                    display: none;
+                }
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #170b10;
+            }
+
+            #box-flex {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+
+            #video-tableau {
+                width: 100%;
+                height: 100%;
+                /*position: absolute;*/
+            }
+            
+            *:fullscreen,
+            *:-webkit-full-screen,
+            *:-moz-full-screen,
+            ::backdrop {
+                background-color: #170b10;
+            }
+        </style>
+    </head>
+    <body onclick="openFullscreen()">
+        <div id="box-flex">
+            <img id="rotate-device" src="../img/rotate-device.gif">
+            <video id="video-tableau" autoplay muted>
+                <source src="../video/CE3105_Vtableau_1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <script>
+            var elem = document.body;
+            function openFullscreen() {
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.webkitRequestFullscreen) { /* Safari */
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) { /* IE11 */
+                    elem.msRequestFullscreen();
+                }
+            }
+        </script>
+    </body>
+</html>
