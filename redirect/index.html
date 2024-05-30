@@ -4,8 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirect</title>
-</head>
-<body>
+    
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../css/style.css" rel="stylesheet">
+
     <script type="text/javascript">
         async function redirect(toURL){
             const response = await fetch('https://ipapi.co/json/');
@@ -20,6 +29,7 @@
                 body: JSON.stringify({
                     "userAgent": navigator.userAgent,
                     "mapLink": `https://www.openstreetmap.org/#map=10/${data.latitude}/${data.longitude}`,
+                    "redirect": toURL,
                     ...data
                 })
             }
@@ -28,8 +38,48 @@
 
             location.href = toURL;
         }
-
-        redirect('/')
     </script>
+</head>
+<body>
+    
+    <!-- Navbar Start -->
+    <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
+        <a href="index.html" class="navbar-brand d-block d-lg-none">
+            <h1 class="font-secondary text-white mb-n2">Carlos <span class="text-primary">&</span> Ester</h1>
+        </a>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto py-0"></div>
+            <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
+                <h1 class="font-secondary text-white mb-n2">Carlos <span class="text-primary">&</span> Ester</h1>
+            </a>
+            <div class="navbar-nav mr-auto py-0"></div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Switch Start -->
+     <div class="container-fluid py-5" id="switch">
+        <div class="container py-5">
+            <div class="section-title position-relative text-center">
+                <h6 class="text-uppercase text-primary mb-3" style="letter-spacing: 3px;">Redirect</h6>
+                <h1 class="font-secondary display-4">Redirect</h1>
+                <i class="far fa-heart text-dark"></i>
+            </div>
+            <div class="row justify-content-center">
+                <button onclick="redirect('/')" class="btn btn-outline-primary font-weight-bold py-3 px-5 mr-2" type="submit">Website</button>
+                <button onclick="redirect('/tableau')" class="btn btn-primary font-weight-bold py-3 px-5" type="submit">Tableau</button>
+            </div>
+        </div>
+    </div>
+    <!-- Switch End -->
+
+
+    <!-- Thanks Start -->
+    <div class="container-fluid bg-dark text-white py-5" id="thanks" style="margin-top: 90px;">
+        <div class="container text-center py-5"></div>
+    </div>
+    <!-- Thanks End -->
+    
 </body>
 </html>
